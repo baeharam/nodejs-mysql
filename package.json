@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/baeharam/nodejs-mysql/issues"
   },
-  "homepage": "https://github.com/baeharam/nodejs-mysql#readme"
+  "homepage": "https://github.com/baeharam/nodejs-mysql#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
 }
