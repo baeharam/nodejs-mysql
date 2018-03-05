@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_practice",
+  "version": "1.0.0",
+  "description": "db_nodejs_connection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baeharam/nodejs-mysql.git"
+  },
+  "author": "haram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baeharam/nodejs-mysql/issues"
+  },
+  "homepage": "https://github.com/baeharam/nodejs-mysql#readme"
+}
