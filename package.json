@@ -18,6 +18,8 @@
   "homepage": "https://github.com/baeharam/nodejs-mysql#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "bulma": "^0.6.2",
+    "bulma-start": "0.0.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mysql": "^2.15.0",
