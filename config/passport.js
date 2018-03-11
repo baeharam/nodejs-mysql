@@ -1,15 +1,12 @@
-module.exports = function(app){
+// passport js file for secret system
+// export to anywhere needed
+module.exports = function(app, db, db_info){
 	var pbkdf2password = require('pbkdf2-password');
 	var hasher = pbkdf2password();
 	var passport = require('passport');
 	var LocalStrategy = require('passport-local').Strategy;
 	var session = require('express-session');
 	var MySQLStore = require('express-mysql-session')(session);
-	
-	// db connection from db.js
-	var dbmodule = require('./db');
-	var db = dbmodule.dbconnection;
-	var db_info = dbmodule.dbinformation;
 	
 	// session setting
 	app.use(session({

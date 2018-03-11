@@ -4,6 +4,9 @@
     <% include ../pages/head %>
   </head>
   <body>
+  	<% if(isfail) { %>
+  	<% include ../partials/alert %>
+  	<% } %>
   	<% include ../pages/login %>
   </body>
 </html>
