@@ -6,7 +6,7 @@ var db_info = dbmodule.dbinformation;
 // get modules
 var app = require('./config/setting')();
 var passport = require('./config/passport')(app, db, db_info);
-var router = require('./routes/route.js')(passport,db);
+var router = require('./routes/route.js')(passport,db,app);
 app.use('/', router);
 
 // Port setting

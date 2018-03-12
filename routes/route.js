@@ -1,18 +1,25 @@
 // router js file for routing pages
 // export to app.js
-module.exports = function(passport,db){
+module.exports = function(passport,db,app){
 	// get modules
 	var express = require('express');
 	var router = express.Router();
 	var swal = require('sweetalert2');
+	var session = require('express-session');
+	app.use(session({secret: 'adklsjfasklj$$', resave: false, saveUninitialized: false}));
+	var pbkdf2password = require('pbkdf2-password');
+	var hasher = pbkdf2password();
 
 	// connect "welcome" page by rendering "welcome_connect"
 	router.get('/', function(req, res){
-			var fail = false;
 			// if session of user exists, connect to main page
 			if(req.user) res.redirect('/main');
 			// else, connect to login page
-			else res.render('connect/login_connect',{isfail:fail});
+			else {
+				console.log(req.session.fail);
+				res.render('connect/login_connect',{fail:req.session.fail});
+				req.session.destroy();
+			}
 	})
 
 	// redirect to "login" page when user clicked logout button
@@ -40,8 +47,8 @@ module.exports = function(passport,db){
 	})
 	
 	router.get('/fail', function(req,res){
-			var fail = true;
-			res.render('connect/login_connect',{isfail:fail});
+			req.session.fail = true;
+			res.redirect('/');
 	})
 
 
@@ -82,7 +89,7 @@ module.exports = function(passport,db){
 	router.post('/delete', function(req, res){
 		var id = req.body.username;
 		var password = req.body.password;
-		var sql_exist = 'EXISTS(SELECT * FROM user_list WHERE id=?)';
+		var sql_exist = 'EXISTS(SELECT * FROM user_list WHERE id=?) as exist';
 		var sql = 'DELETE FROM user_list WHERE id=?';
 		
 		if(id && password){
@@ -91,10 +98,13 @@ module.exports = function(passport,db){
 					res.send('Internal Server error');
 					console.log(err);
 				}
-				else if(!isExist[0].sql_exist){
+				else if(!isExist[0].exist){
 					console.log('not exist');
 				}
-				else res.redirect('/');
+				else {
+					db.query(sql, [id], function(err, delete_user){});
+					res.redirect('/');
+				}
 			})	
 		}
 	})
